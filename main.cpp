@@ -1,5 +1,5 @@
 #include <iostream>
-
+//Неявный интерфейс: Должен быть оператор копирующего присваивания, деструктор и конструктор по умолчанию наверно?
 template< class T >
 struct BiList
 {
@@ -102,5 +102,22 @@ void clear(BiList< T >* fakeStart, BiList< T >* fakeEnd)
 
 int main ()
 {
-  return 0;
+  int s[5] = {1, 13, 45, 6, 10};
+  size_t len_s = 5;
+  BiList< int >* test = makeBiList< int >();
+  BiList< int >* test_data = test->next;
+  for (size_t i = 0; i < len_s; ++i)
+  {
+    add(test_data, s[i]);
+  }
+
+  BiList< int >* now = test->next;
+
+  while (now != test_data)
+  {
+    std::cout << now->val << '\n';
+    now = now->next;
+  }
+
+  clear(test, test_data);
 }
